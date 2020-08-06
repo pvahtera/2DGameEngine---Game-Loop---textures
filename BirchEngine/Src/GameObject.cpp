@@ -16,15 +16,10 @@ GameObject::GameObject(const char* texturesheet, SDL_Renderer* ren, int x, int y
 
 void GameObject::Update()
 {
-	/*
-	xpos = 0;
-	ypos = 0;
-	*/
+
 	xpos++;
 	ypos++;
 
-	//srcRect.h = 128;
-	//srcRect.w = 128;
 	srcRect.h = 32;
 	srcRect.w = 32;
 	srcRect.x = 0;
