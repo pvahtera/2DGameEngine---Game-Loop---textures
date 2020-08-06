@@ -1,6 +1,7 @@
 #include "Game.h"
 
 SDL_Texture* playerTex;
+SDL_Rect srcR, destR; // source and destination rectangles that scale our pic
 
 Game::Game()
 {}
@@ -44,8 +45,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 	// we first need surface before we can initialize image
 
 	SDL_Surface* tmpSurface = IMG_Load("assets/Player.png");
-	//SDL_Surface *tmpSurface = IMG_Load("C:/Users/w100692/Dev/2D_Game_Engine_textures/2D_Game_Engine/assets/Player.png");
-
+	
 	playerTex = SDL_CreateTextureFromSurface(renderer, tmpSurface);
 	SDL_FreeSurface(tmpSurface);
 
@@ -75,6 +75,13 @@ void Game::handleEvents()
 void Game::update()
 {
 	cnt++;
+	// size of pic
+	destR.h = 64; // height
+	destR.w = 64; // width
+
+	//we can use the rectangle to move our pic
+	destR.x = cnt;
+
 	std::cout << cnt << std::endl;
 
 }
@@ -83,7 +90,7 @@ void Game::render()
 {
 	// clear buffer
 	SDL_RenderClear(renderer);
-	SDL_RenderCopy(renderer, playerTex, NULL, NULL);
+	SDL_RenderCopy(renderer, playerTex, NULL, &destR);
 	// this is where we add stuff to render
 	SDL_RenderPresent(renderer);
 
