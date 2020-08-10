@@ -1,6 +1,16 @@
 #pragma once
 
 #include "ECS.h"
+#include "PositionComponent.h"
+#include "SpriteComponent.h"
+
+
+
+
+
+
+
+/*
 
 class PositionComponent : public Component
 {
@@ -31,3 +41,5 @@ public:
 		ypos = y;
 	}
 };
+
+*/
