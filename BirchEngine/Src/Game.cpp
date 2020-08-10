@@ -56,7 +56,7 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 	map = new Map();
 
-	player.addComponent<PositionComponent>();
+	player.addComponent<PositionComponent>(0, 0);
 	player.addComponent<SpriteComponent>("assets/Player2.png");
 
 	/*
@@ -92,14 +92,10 @@ void Game::update()
 	manager.refresh();
 	manager.update(); // update components
 
-	/*
-		player->Update();
-	enemy->Update();
-	
-	std::cout << newPlayer.getComponent<PositionComponent>().x() << "," <<
-		newPlayer.getComponent<PositionComponent>().y() << "," << std::endl;
-	
-	*/
+	if (player.getComponent<PositionComponent>().x() > 100)
+	{
+		player.getComponent<SpriteComponent>().setTex("assets/boogey_png.png");
+	}
 
 
 }
