@@ -112,7 +112,6 @@ void Game::update()
 	}
 
 
-
 }
 
 void Game::render()
