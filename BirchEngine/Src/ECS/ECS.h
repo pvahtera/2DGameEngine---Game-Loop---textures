@@ -74,14 +74,7 @@ public:
 
 	template <typename T> bool hasComponent() const
 	{
-		//return componentBitSet[getComponentID<T>];
-		/*
-		return componentBitSet[getComponentID<T>];
-		*/
 		return componentBitSet[getComponentTypeID<T>()];
-
-		//return componentBitSet[getComponentID<T>()];
-		//return componentBitSet[getComponentID<T>=true];
 	}
 
 	template <typename T, typename... TArgs>

@@ -6,6 +6,7 @@
 
 class ColliderComponent : public Component
 {
+public:
 	// represent area that is collidable
 	SDL_Rect collider;
 	// when we detect collision, grab a tag of object
@@ -13,6 +14,12 @@ class ColliderComponent : public Component
 	std::string tag; 
 
 	TransformComponent* transform;
+
+	ColliderComponent(std::string t)
+	{
+		tag = t;
+	}
+
 
 	void init() override
 	{
@@ -22,6 +29,14 @@ class ColliderComponent : public Component
 			entity->addComponent<TransformComponent>();
 		}
 		transform = &entity->getComponent<TransformComponent>();
+	}
+
+	void update() override
+	{
+		collider.x = static_cast<int>(transform->position.x);
+		collider.y = static_cast<int>(transform->position.y);
+		collider.w = transform->width * transform->scale;
+		collider.h = transform->height * transform->scale;
 	}
 
 };
