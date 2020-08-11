@@ -118,8 +118,6 @@ void Game::render()
 {
 
 	SDL_RenderClear(renderer);
-	//map->DrawMap();
-
 	manager.draw();
 	SDL_RenderPresent(renderer);
 
@@ -133,3 +131,6 @@ void Game::clean()
 	SDL_Quit();
 	std::cout << "Game cleaned" << std::endl;
 }
+
+void Game::AddTile(int id, int x, int y)
+{}
