@@ -9,7 +9,7 @@ Map* map;
 Manager manager;
 
 SDL_Renderer* Game::renderer = nullptr;
-
+SDL_Event Game::event;
 auto& player(manager.addEntity());
 
 Game::Game()
@@ -54,12 +54,13 @@ void Game::init(const char* title, int xpos, int ypos, int width, int height, bo
 
 	player.addComponent<TransformComponent>();
 	player.addComponent<SpriteComponent>("assets/Player2.png");
+	player.addComponent<KeyboardController>(); // control player
 
 }
 
 void Game::handleEvents()
 {
-	SDL_Event event;
+	
 	SDL_PollEvent(&event);
 
 	// check the type of event
@@ -81,15 +82,6 @@ void Game::update()
 {
 	manager.refresh();
 	manager.update(); // update components
-
-	player.getComponent<TransformComponent>().position.Add(Vector2D(5, 0));
-
-	if (player.getComponent<TransformComponent>().position.x > 100)
-	{
-		player.getComponent<SpriteComponent>().setTex("assets/boogey_png.png");
-	}
-
-
 }
 
 void Game::render()

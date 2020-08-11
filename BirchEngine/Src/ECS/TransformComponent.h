@@ -11,6 +11,9 @@ class TransformComponent : public Component
 public:
 
 	Vector2D position;
+	Vector2D velocity;
+	
+	int speed = 3;
 
 	//set up a default value
 	TransformComponent()
@@ -27,9 +30,17 @@ public:
 
 	}
 
+	void init() override
+	{
+		velocity.x = 0;
+		velocity.y = 0;
+	}
+
 	void update() override
 	{
-
+		// to move our player
+		position.x += velocity.x * speed;
+		position.y += velocity.y * speed;
 	}
 
 
