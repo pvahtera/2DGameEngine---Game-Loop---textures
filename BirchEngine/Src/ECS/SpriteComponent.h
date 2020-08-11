@@ -7,7 +7,7 @@
 class SpriteComponent : public Component
 {
 private:
-	TransformComponent* transform;
+	TransformComponent *transform;
 	SDL_Texture *texture;
 	SDL_Rect srcRect, destRect;
 public:
@@ -22,9 +22,7 @@ public:
 	void setTex(const char* path)
 	{
 		texture = TextureManager::LoadTexture(path);
-
 	}
-
 
 
 	void init() override
@@ -40,9 +38,9 @@ public:
 	void update() override
 	{
 		// this function is for moving around
-
-		destRect.x = position->x();
-		destRect.y = position->y();
+		// rectangle expects int so that's why we cast them
+		destRect.x = (int)transform->position.x;
+		destRect.y = (int)transform->position.y;
 
 	}
 	void draw() override
