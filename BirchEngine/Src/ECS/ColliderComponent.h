@@ -24,7 +24,7 @@ public:
 	void init() override
 	{
 		// error checking
-		if (entity->hasComponent<TransformComponent>())
+		if (!entity->hasComponent<TransformComponent>())
 		{
 			entity->addComponent<TransformComponent>();
 		}
