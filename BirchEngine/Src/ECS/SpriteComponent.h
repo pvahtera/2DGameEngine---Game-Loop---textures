@@ -27,6 +27,10 @@ public:
 	// this will hold our animations
 	std::map<const char*, Animation> animations;
 
+	// flag whether to flip our character or not
+	SDL_RendererFlip spriteFlip = SDL_FLIP_NONE;
+
+
 	SpriteComponent() = default;
 	SpriteComponent(const char* path)
 	{
@@ -88,7 +92,7 @@ public:
 	}
 	void draw() override
 	{
-		TextureManager::Draw(texture, srcRect, destRect);
+		TextureManager::Draw(texture, srcRect, destRect, spriteFlip);
 	}
 
 	void Play(const char* animName)
