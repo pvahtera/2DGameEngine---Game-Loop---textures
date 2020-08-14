@@ -10,14 +10,30 @@ private:
 	TransformComponent *transform;
 	SDL_Texture *texture;
 	SDL_Rect srcRect, destRect;
+
+	// to animate our object
+
+	bool animated = false;
+	int frames = 0;
+	int speed = 100; // delay between frames in milliseconds
+
 public:
 	SpriteComponent() = default;
 	SpriteComponent(const char* path)
 	{
-		// load texture here
-
-		setTex(path);
+		setTex(path); // load texture here
 	}
+
+	SpriteComponent(const char* path, int nFrames, int mSpeed)
+	{
+		animated = true;
+		frames = nFrames;
+		speed = mSpeed;
+		setTex(path); // load texture here
+	}
+
+
+
 	~SpriteComponent()
 	{
 		SDL_DestroyTexture(texture);
@@ -40,6 +56,11 @@ public:
 	}
 	void update() override
 	{
+		if (animated)
+		{
+			srcRect.x = srcRect.w * static_cast<int>((SDL_GetTicks() / speed) % frames);
+		}
+
 		// this function is for moving around
 		// rectangle expects int so that's why we cast them
 		destRect.x = (int)transform->position.x;
