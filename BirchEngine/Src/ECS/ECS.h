@@ -26,7 +26,7 @@ inline ComponentID getNewComponentTypeID()
 
 template <typename T> inline ComponentID getComponentTypeID() noexcept
 {
-	static ComponentID typeID = getComponentTypeID(); // generate new last id and put it into our type id
+	static ComponentID typeID = getNewComponentTypeID(); // generate new last id and put it into our type id
 	return typeID;
 }
 
