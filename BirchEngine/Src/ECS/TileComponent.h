@@ -25,7 +25,7 @@ public:
 		texture = TextureManager::LoadTexture(path);
 		srcRect.x = srcX;
 		srcRect.y = srcY;
-		srcRect.w = srcRect.h = 34; // size of the tile
+		srcRect.w = srcRect.h = 32; // size of the tile
 
 		destRect.x = xpos;
 		destRect.y = ypos;
