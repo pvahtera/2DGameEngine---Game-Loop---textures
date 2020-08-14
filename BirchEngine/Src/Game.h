@@ -23,7 +23,7 @@ public:
 	void render();
 	void clean();
 
-	static void AddTile(int id, int x, int y);
+	static void AddTile(int srcX, int srcY, int xpos, int ypos);
 
 	bool running() { return isRunning; }
 	static SDL_Renderer* renderer;
