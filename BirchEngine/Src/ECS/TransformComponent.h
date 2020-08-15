@@ -29,8 +29,8 @@ public:
 
 	TransformComponent(int sc)
 	{
-		position.x = 0.0f;
-		position.y = 0.0f;
+		position.x = 400;
+		position.y = 340; // middle of the screen
 		scale = sc;
 	}
 
@@ -60,9 +60,8 @@ public:
 
 	void update() override
 	{
-		// to move our player
-		position.x += velocity.x * speed;
-		position.y += velocity.y * speed;
+		
+
 	}
 
 
