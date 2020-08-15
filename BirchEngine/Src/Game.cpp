@@ -12,6 +12,8 @@ Manager manager;
 SDL_Renderer* Game::renderer = nullptr;
 SDL_Event Game::event;
 
+SDL_Rect Game::camera = { 0, 0, 800, 640 };
+
 std::vector<ColliderComponent*> Game::colliders;
 
 bool Game::isRunning = false;
@@ -113,15 +115,19 @@ void Game::update()
 	manager.refresh();
 	manager.update(); // update components
 
-	Vector2D pVel = player.getComponent<TransformComponent>().velocity;
-	// background moving should match player speed
-	int pSpeed = player.getComponent<TransformComponent>().speed;
+	camera.x = player.getComponent<TransformComponent>().position.x - 400;
+	camera.y = player.getComponent<TransformComponent>().position.y - 320;
 
-	for (auto t : tiles)
-	{
-		t->getComponent<TileComponent>().destRect.x += -(pVel.x * pSpeed);
-		t->getComponent<TileComponent>().destRect.y += -(pVel.y * pSpeed);
-	}
+	// camera bounds and movement
+	if (camera.x < 0)
+		camera.x = 0;
+	if (camera.y < 0)
+		camera.y = 0;
+	if (camera.x > camera.w)
+		camera.x = camera.w;
+	if (camera.y > camera.h)
+		camera.y = camera.h;
+	
 
 
 }
